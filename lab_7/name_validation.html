@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <title>Name Validation</title>
+</head>
+<body>
+    <h1>Name Validation</h1>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="" />
+        <input type="button" name="submit" value="Submit" onclick="validateName()" />
+        <p id="error"></p>
+    </form>
+    
+    <script>
+        function validateName() {
+            let error = document.getElementById('error');
+            let name = document.getElementById('name').value;
+            
+            // Validation rules
+            if (name === "") {
+                error.innerHTML = "Name cannot be empty!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check if contains at least two words
+            let words = name.trim().split(/\s+/);
+            if (words.length < 2) {
+                error.innerHTML = "Name must contain at least two words!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check if contains only allowed characters (a-z, A-Z, dot, dash)
+            let validChars = /^[a-zA-Z\s\.\-]+$/;
+            if (!validChars.test(name)) {
+                error.innerHTML = "Name can only contain letters, spaces, dots, or dashes!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check if starts with a letter
+            let firstChar = name.charAt(0);
+            if (!((firstChar >= 'a' && firstChar <= 'z') || (firstChar >= 'A' && firstChar <= 'Z'))) {
+                error.innerHTML = "Name must start with a letter!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // If all validations pass
+            error.innerHTML = "Name is valid!";
+            error.style.color = "green";
+            return true;
+        }
+    </script>
+</body>
+</html>

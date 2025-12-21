@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <title>Profile Picture Validation</title>
+</head>
+<body>
+    <h1>Profile Picture Validation</h1>
+    <form>
+        <label for="userId">User Id:</label>
+        <input type="text" id="userId" name="userId" value="" /><br><br>
+        
+        <label for="picture">Picture:</label>
+        <input type="file" id="picture" name="picture" />
+        <br><br>
+        
+        <input type="button" name="submit" value="Submit" onclick="validateProfile()" />
+        <p id="error"></p>
+    </form>
+    
+    <script>
+        function validateProfile() {
+            let error = document.getElementById('error');
+            let userId = document.getElementById('userId').value;
+            let picture = document.getElementById('picture').value;
+            
+            // User ID validation
+            if (userId === "") {
+                error.innerHTML = "User ID cannot be empty!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Convert to number for validation
+            let userIdNum = Number(userId);
+            
+            // Check if valid positive number
+            if (isNaN(userIdNum) || userIdNum <= 0) {
+                error.innerHTML = "User ID must be a positive number!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Picture validation
+            if (picture === "") {
+                error.innerHTML = "Please select a picture!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // If all validations pass
+            error.innerHTML = "Profile information is valid!";
+            error.style.color = "green";
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <title>Date of Birth Validation</title>
+</head>
+<body>
+    <h1>Date of Birth Validation</h1>
+    <form>
+        <label for="dob">Date of Birth:</label><br>
+        <input type="text" id="day" name="day" placeholder="dd" size="2" maxlength="2"> /
+        <input type="text" id="month" name="month" placeholder="mm" size="2" maxlength="2"> /
+        <input type="text" id="year" name="year" placeholder="yyyy" size="4" maxlength="4"><br>
+        <input type="button" name="submit" value="Submit" onclick="validateDOB()" />
+        <p id="error"></p>
+    </form>
+    
+    <script>
+        function validateDOB() {
+            let error = document.getElementById('error');
+            let day = document.getElementById('day').value;
+            let month = document.getElementById('month').value;
+            let year = document.getElementById('year').value;
+            
+            // Check if any field is empty
+            if (day === "" || month === "" || year === "") {
+                error.innerHTML = "Date of Birth cannot be empty!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Convert to numbers for validation
+            let dayNum = Number(day);
+            let monthNum = Number(month);
+            let yearNum = Number(year);
+            
+            // Check if valid numbers
+            if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum)) {
+                error.innerHTML = "Please enter valid numbers for date!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check day range (0-31)
+            if (dayNum < 0 || dayNum > 31) {
+                error.innerHTML = "Day must be between 0 and 31!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check month range (1-12)
+            if (monthNum < 1 || monthNum > 12) {
+                error.innerHTML = "Month must be between 1 and 12!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // Check year range (1900-2016)
+            if (yearNum < 1900 || yearNum > 2016) {
+                error.innerHTML = "Year must be between 1900 and 2016!";
+                error.style.color = "red";
+                return false;
+            }
+            
+            // If all validations pass
+            error.innerHTML = "Date of Birth is valid!";
+            error.style.color = "green";
+            return true;
+        }
+    </script>
+</body>
+</html>
