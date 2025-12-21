@@ -1,0 +1,41 @@
+form {
+
+    width: 300px;
+
+    margin: 100px auto;
+
+    padding: 20px;
+
+    text-align: center;
+
+}
+
+input {
+
+    width: 100%;
+
+    padding: 10px;
+
+    margin: 10px 0;
+    /* 🔴 নিচে নিচে আসার মূল কারণ */
+
+    display: block;
+    /* 🔴 same row সমস্যা fix */
+
+}
+
+button {
+
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 10px;
+
+}
+
+p {
+
+    margin-top: 15px;
+
+}
